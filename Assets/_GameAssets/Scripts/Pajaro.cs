@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Pajaro : MonoBehaviour
 {
+    public AudioClip sonidoAlas;
+    public AudioClip sonidoPuntos;
     public AudioSource audioSource;
     public Rigidbody parteFisica;//Declaración del componente rigidbody
     public GameObject prefabSangre;
@@ -15,7 +17,7 @@ public class Pajaro : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X)){
             //parteFisica.AddForce(Vector3.up * 500);
             parteFisica.velocity = new Vector3(0, velocidad, 0);
-            audioSource.Play();
+            audioSource.PlayOneShot(sonidoAlas);
         }
     }
 
@@ -31,5 +33,6 @@ public class Pajaro : MonoBehaviour
     {
         GameManager gameManager = GameObject.Find("GameManagerObjeto").GetComponent<GameManager>();
         gameManager.AgregarPunto();
+        audioSource.PlayOneShot(sonidoPuntos);
     }
 }
